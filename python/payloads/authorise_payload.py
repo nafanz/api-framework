@@ -3,10 +3,8 @@ class AuthorisePayload:
         self.username = username
         self.password = password
 
-
     def build(self):
-        return """{{
-            "username": "{username}",
-            "password": "{password}"
-        }}""".format(username=self.username,
-                     password=self.password)
+        return f"""{{
+            "username": "{self.username}",
+            "password": "{self.password}"
+        }}"""

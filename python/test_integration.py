@@ -11,42 +11,65 @@ def test_get_booking():
 
 
 def test_get_specific_booking():
-    response = specific_booking(1, 'application/json')
+    response = specific_booking(
+        1,
+        'application/json'
+    )
+
     assert response.status_code == 200
 
 
 def test_get_returns_418_with_bad_heading():
-    response = specific_booking(1, 'text/html')
+    response = specific_booking(
+        1,
+        'text/html'
+    )
+
     assert response.status_code == 418
 
 
 def test_post_returns_200():
-    payload = BookingPayload('Sally',
-                             'Anne',
-                             123,
-                             'true',
-                             '2016-01-01',
-                             '2016-01-02',
-                             'breakfast')
+    payload = BookingPayload(
+        'Sally',
+        'Anne',
+        123,
+        'true',
+        '2016-01-01',
+        '2016-01-02',
+        'breakfast'
+    )
 
-    response = create_booking(payload.build(), 'application/json')
+    response = create_booking(
+        payload.build(),
+        'application/json'
+    )
+
     assert response.status_code == 200
 
 
 def test_delete_booking():
-    payload = BookingPayload('Sally',
-                             'Anne',
-                             123,
-                             'true',
-                             '2016-01-01',
-                             '2016-01-02',
-                             'breakfast')
+    payload = BookingPayload(
+        'Sally',
+        'Anne',
+        123,
+        'true',
+        '2016-01-01',
+        '2016-01-02',
+        'breakfast'
+    )
 
-    created_response = create_booking(payload.build(), 'application/json')
+    created_response = create_booking(
+        payload.build(),
+        'application/json'
+    )
+
     payload_id = json.loads(created_response.content)['bookingid']
 
-    auth_payload = AuthorisePayload('admin',
-                                    'password123')
+    auth_payload = AuthorisePayload(
+        'admin',
+        'password123'
+    )
+
     auth_response = post_credentials(auth_payload.build())
 
     auth_token = json.loads(auth_response.content)['token']

@@ -9,20 +9,14 @@ class BookingPayload:
         self.additionalneeds = additionalneeds
 
     def build(self):
-        return """{{
-            "firstname": "{firstname}",
-            "lastname": "{lastname}",
-            "totalprice": {totalprice},
-            "depositpaid": {depositpaid},
+        return f"""{{
+            "firstname": "{self.firstname}",
+            "lastname": "{self.lastname}",
+            "totalprice": {self.totalprice},
+            "depositpaid": {self.depositpaid},
             "bookingdates": {{
-                "checkin": "{checkin}",
-                "checkout": "{checkout}"
+                "checkin": "{self.checkin}",
+                "checkout": "{self.checkout}"
             }},
-            "additionalneeds": "{additionalneeds}"
-        }}""".format(firstname=self.firstname,
-                    lastname=self.lastname,
-                    totalprice=str(self.totalprice),
-                    depositpaid=self.depositpaid,
-                    checkin=self.checkin,
-                    checkout=self.checkout,
-                    additionalneeds=self.additionalneeds)
+            "additionalneeds": "{self.additionalneeds}"
+        }}"""
