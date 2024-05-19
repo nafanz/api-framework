@@ -1,10 +1,11 @@
 import requests
-
-url_booking = 'https://restful-booker.herokuapp.com/booking'
+from .endpoints import *
 
 
 def all_bookings():
-    return requests.get(url=url_booking)
+    return requests.get(
+        url=restful_booker
+    )
 
 
 def specific_booking(identifier, accept):
@@ -13,7 +14,7 @@ def specific_booking(identifier, accept):
     }
 
     return requests.get(
-        url=f'{url_booking}/{identifier}',
+        url=f'{restful_booker}/{Endpoint.booking}/{identifier}',
         headers=headers
     )
 
@@ -25,8 +26,8 @@ def create_booking(payload, content_type):
     }
 
     return requests.post(
-        url_booking,
-        payload,
+        url=f'{restful_booker}/{Endpoint.booking}',
+        json=payload,
         headers=headers
     )
 
@@ -37,7 +38,7 @@ def delete_booking(identifier, token):
     }
 
     return requests.delete(
-        url=f'{url_booking}/{identifier}',
+        url=f'{restful_booker}/{Endpoint.booking}/{identifier}',
         headers=headers
     )
 
