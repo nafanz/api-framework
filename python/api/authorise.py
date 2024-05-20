@@ -1,4 +1,5 @@
 import requests
+from .endpoints import *
 
 
 def post_credentials(payload):
@@ -7,8 +8,7 @@ def post_credentials(payload):
     }
 
     return requests.post(
-        'https://restful-booker.herokuapp.com/auth',
-        payload,
+        url=f'{restful_booker}/{Endpoint.auth}',
+        json=payload,
         headers=headers
     )
-

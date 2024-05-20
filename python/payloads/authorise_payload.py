@@ -4,7 +4,7 @@ class AuthorisePayload:
         self.password = password
 
     def build(self):
-        return f"""{{
-            "username": "{self.username}",
-            "password": "{self.password}"
-        }}"""
+        return {
+            "username": self.username,
+            "password": self.password
+        }
